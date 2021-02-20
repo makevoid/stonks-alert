@@ -18,6 +18,13 @@ You don't need a Pro account if you're ok with some delay (prices being checked 
 - A number registered with SMS capabilities
 - API keys configured
 
+### Config
+
+Edit `config/stonks.rb` and replace the configuration with the ticker symbols you want to watch.
+
+The keys of the config hash are the ticker symbols.
+The values contain the alerts thresholds, low and high. Whenever the price crosses these values (on one direction or on the other) an SMS alert will be triggered.
+
 ### Env vars / secret files
 
 This app can be configured with environment variables and secret files, note env vars take precedence.
