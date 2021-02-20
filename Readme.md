@@ -18,7 +18,7 @@ You don't need a Pro account if you're ok with some delay (prices being checked 
 - A number registered with SMS capabilities
 - API keys configured
 
-### Env vars / secrets file
+### Env vars / secret files
 
 This app can be configured with environment variables and secret files, note env vars take precedence.
 
