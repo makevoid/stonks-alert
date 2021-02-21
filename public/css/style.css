@@ -1,0 +1,44 @@
+/* helpers */
+
+.rel {
+  position: relative;
+}
+
+.s10 { height: 10px; }
+.s15 { height: 15px; }
+.s20 { height: 20px; }
+.s30 { height: 30px; }
+.s40 { height: 40px; }
+.s50 { height: 50px; }
+.s60 { height: 60px; }
+.s70 { height: 70px; }
+.s100 { height: 100px; }
+.s150 { height: 150px; }
+
+.lh10 { line-height: 10px; }
+.lh20 { line-height: 20px; }
+.lh30 { line-height: 30px; }
+.lh40 { line-height: 40px; }
+.lh50 { line-height: 50px; }
+.lh60 { line-height: 60px; }
+.lh70 { line-height: 70px; }
+
+
+/* custom style */
+
+.btn-add {
+  font-weight: bold;
+  font-size: 1.2em;
+  position: relative;
+  bottom: 5px;
+}
+
+.del-link {
+  margin-left: 18px;
+}
+
+.red {
+  color: #C00;
+  position: relative;
+  top: 7px;
+}
