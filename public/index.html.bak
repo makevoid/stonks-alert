@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <div class="container">
-      <section class="hero is-small">
+    <div class="container has-border">
+      <section class="hero is-small is-info">
         <div class="hero-body">
           <p class="title">
             Stonks Alert
