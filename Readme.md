@@ -7,10 +7,15 @@ Stock alerts SMS app
 - simple, ~ 200 LoC program
 - stock prices feed from alphavantage
 - twilio SMS alerts
+- redis dev cache
 
 ### Price feed details
 
 You don't need a Pro account if you're ok with some delay (prices being checked once every ~10m)
+
+### Redis DB
+
+this application requires a redis instance running locally
 
 ### Twilio accounts alerts setup
 
