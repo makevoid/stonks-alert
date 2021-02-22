@@ -5,6 +5,7 @@ module Utils
     prices.each do |price|
       puts "#{price.f :ticker}: #{price.f :price}"
     end
+    puts "\n"
   end
 
 end

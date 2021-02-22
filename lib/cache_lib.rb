@@ -6,6 +6,7 @@ module CacheLib
     value_yaml = YAML.dump value
     res = R.setex cache_key, timeout, value_yaml
     puts "redis setex #{cache_key.inspect}: #{res}" if DEBUG
+    value
   end
 
   def cache_exists?(cache_key)

@@ -6,7 +6,6 @@ def process_stock_ticker(stock:)
   price = stonk_price ticker_symbol: ticker
 
   puts "#{ticker}: #{price}"
-  sleep 15
   {
     ticker: ticker,
     price:  price,
@@ -44,6 +43,7 @@ def check_stocks
     cache(ticker_name) do
       process_stock_ticker stock: stock
     end
+    sleep 15
   end.compact
 
   list_prices prices: prices
