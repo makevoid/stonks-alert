@@ -6,7 +6,7 @@ module StonksAPI
     quote = stock.quote
     quote = quote.output["Global Quote"]
     price = quote["05. price"]
-    puts "price: #{price} (high: #{quote["03. high"]}, low: #{quote["04. low"]})"
+    puts "price: #{price} (low: #{quote["04. low"]}, high: #{quote["03. high"]})"
     price.to_f
   end
 
