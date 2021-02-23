@@ -40,10 +40,11 @@ def check_stocks
   stock_tickers = STONKS
   prices = stock_tickers.map do |stock|
     ticker_name = stock.first
-    cache(ticker_name) do
+    value = cache(ticker_name) do
       process_stock_ticker stock: stock
     end
     sleep 15
+    value
   end.compact
 
   list_prices prices: prices
