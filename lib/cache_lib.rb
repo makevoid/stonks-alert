@@ -2,7 +2,7 @@ module CacheLib
 
   def cache_set(cache_key:, value:)
     one_minute = 60 # seconds
-    timeout = one_minute * 10
+    timeout = one_minute * 9 # 9 minutes
     value_yaml = YAML.dump value
     res = R.setex cache_key, timeout, value_yaml
     puts "redis setex #{cache_key.inspect}: #{res}" if DEBUG
