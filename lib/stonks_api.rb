@@ -4,6 +4,10 @@ module StonksAPI
     Alphavantage.price ticker: ticker_symbol
   end
 
+  def crypto_price(ticker_symbol:)
+    Alphavantage.price_crypto ticker: ticker_symbol
+  end
+
   # def stonk_price_alphavantage_gem_legacy(ticker_symbol:)
   #   symbol = ticker_symbol.to_s
   #   stock = Alphavantage::Stock.new symbol: symbol, key: KEY_STONKS_API

@@ -17,7 +17,6 @@ def process_stock_ticker(stock:)
   }
 end
 
-
 def send_sms(message:, recipient:)
   sms = SMS.new.deliver to: recipient, message: message
   p sms
@@ -50,14 +49,30 @@ def process_stock_ticker_cached(stock:)
   end
 end
 
-def check_stocks
+def check_stonks_only
   stock_tickers = STONKS
-  prices = stock_tickers.map do |stock|
+  stock_tickers.map do |stock|
     ticker_name = stock.first
     # process_stock_ticker_cached stock: stock # just for DEV
     process_stock_ticker stock: stock
     sleep DAILY_REQUEST_LIMIT_DELAY
   end.compact
+end
+
+def check_cryptos
+  crypto_tickers = CRYPTOS
+  crypto_tickers.map do |stock|
+    ticker_name = stock.first
+    price = process_stock_ticker stock: stock
+    sleep DAILY_REQUEST_LIMIT_DELAY
+    price
+  end.compact
+end
+
+def check_stonks
+  prices = []
+  prices += check_stonks_only
+  prices += check_cryptos
 
   list_prices prices: prices
 
@@ -80,7 +95,7 @@ end
 
 def main
   loop do
-    check_stocks
+    check_stonks
   end
 end
 

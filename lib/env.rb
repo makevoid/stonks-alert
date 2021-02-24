@@ -47,6 +47,17 @@ DAILY_REQUEST_LIMIT  = 500
 DAILY_REQUEST_LIMIT_DELAY  = (seconds_in_a_day / DAILY_REQUEST_LIMIT).ceil + 1 # 174 seconds
 
 
+# alphavantage
+
+ALPHAVANTAGE_API_HOST = "https://www.alphavantage.co/query"
+# stonks
+ALPHAVANTAGE_API_KEY = KEY_STONKS_API
+ALPHAVANTAGE_TICKERS_URL = "#{ALPHAVANTAGE_API_HOST}?function=TIME_SERIES_INTRADAY&symbol=%s&interval=5min&apikey=#{ALPHAVANTAGE_API_KEY}"
+# TODO: #{ALPHAVANTAGE_API_HOST}?function=GLOBAL_QUOTE&symbol=IBM&apikey=demo # TODO: check this api
+# crypto
+ALPHAVANTAGE_CRYPTO_URL = "#{ALPHAVANTAGE_API_HOST}?function=CURRENCY_EXCHANGE_RATE&from_currency=%s&to_currency=USD&apikey=#{ALPHAVANTAGE_API_KEY}"
+ALPHAVANTAGE_CRYPTO2CRYPTO_URL = "#{ALPHAVANTAGE_API_HOST}?function=CURRENCY_EXCHANGE_RATE&from_currency=%s&to_currency=BTC&apikey=#{ALPHAVANTAGE_API_KEY}"
+
 require_relative '../lib/sms'
 
 require_relative "../config/stonks"

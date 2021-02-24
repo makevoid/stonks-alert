@@ -2,22 +2,33 @@
 
 require_relative 'env'
 
-AALPHAVANTAGE_API_KEY = KEY_STONKS_API
-ALPHAVANTAGE_TICKERS_URL = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=%s&interval=5min&apikey=#{AALPHAVANTAGE_API_KEY}"
-# TODO: https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=demo # TODO: check this api
+module AlphavantageLibCrypto
 
-# crypto
-
-# ALPHAVANTAGE_CRYPTO_URL = https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=%s&to_currency=USD&apikey=demo
-# ALPHAVANTAGE_CRYPTO2CRYPTO_URL = https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=%s&to_currency=BTC&apikey=demo
-
-# TODO: move
-def alphavantage_crypto_url(symbol:)
-  if crypto == "BTC"
-    ALPHAVANTAGE_CRYPTO_URL % "BTC"
-  else
-    ALPHAVANTAGE_CRYPTO2CRYPTO_URL % crypto
+  def alphavantage_crypto_url(symbol:)
+    if symbol == "BTC"
+      ALPHAVANTAGE_CRYPTO_URL % "BTC"
+    else
+      ALPHAVANTAGE_CRYPTO2CRYPTO_URL % symbol
+    end
   end
+
+  def price_crypto_raw(symbol:)
+    url = alphavantage_crypto_url symbol: symbol
+    http = Excon.new url
+    resp  = http.get
+    resp  = JSON.parse resp.body
+    p resp if DEBUG
+    resp
+  end
+
+  def price_crypto(symbol:)
+    price = price_crypto_raw symbol: symbol
+    price = price.f "Realtime Currency Exchange Rate"
+    price = price.f "5. Exchange Rate"
+    p price if DEBUG
+    price
+  end
+
 end
 
 module AlphavantageLib
@@ -69,6 +80,7 @@ end
 class Alphavantage
 
   include AlphavantageLib
+  include AlphavantageLibCrypto
 
   attr_reader :ticker
 
@@ -84,6 +96,15 @@ class Alphavantage
     new(ticker: ticker).price
   end
 
+  def price_crypto
+    crypto_price ticker_symbol: ticker
+  end
+
+  def self.crypto_price(ticker:)
+    new(ticker: ticker).crypto_price
+  end
+
+
 end
 
 # Usage:
@@ -93,10 +114,21 @@ end
 
 if __FILE__ == $0
 
-  def main
+  def stonks_check
     symbol = "AAPL"
     price = stonk_price ticker_symbol: symbol
     puts "#{symbol}: #{price}"
+  end
+
+  def crypto_check
+    symbol = "ETH"
+    price = crypto_price symbol: symbol
+    puts "#{symbol}: #{price}"
+  end
+
+  def main
+    crypto_check
+    # stonks_check
   end
 
   main
