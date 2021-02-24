@@ -30,9 +30,15 @@ def send_smses(message:)
   end
 end
 
+def sms_sent_recently?(ticker:)
+  ticker
+end
+
 def send_alert(ticker:, price:)
   message = "ticker #{ticker} reached price #{price}"
   puts "sending SMS - #{message}"
+  # don't alert if last alert was on the same ticker for
+  return false if sms_sent_recently? ticker: ticker
   send_smses message: message
 end
 

@@ -1,4 +1,5 @@
 require "yaml"
+require "json"
 require "bundler"
 Bundler.require :default
 
@@ -6,8 +7,8 @@ PATH = File.expand_path __FILE__, "../"
 
 R = Redis.new
 
-debug_default = false
-DEBUG = ENV["DEBUG"] == "1" || debug_default
+DEBUG_DEFAULT = false
+DEBUG = ENV["DEBUG"] == "1" || DEBUG_DEFAULT
 
 class Redis
   alias :[]  :get
