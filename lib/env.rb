@@ -39,10 +39,19 @@ twilio_keys = ENV["TWILIO_KEYS"] || twilio_keys_default
 twilio_keys = twilio_keys.split "|"
 TWILIO_SID, TWILIO_TOKEN = twilio_keys
 
+# NOTE: optimization possible (batching all calls in consecutive minutes, then waiting for longer)
+# MINUTE_REQUEST_LIMIT = 5
+# MINUTE_REQUEST_LIMIT_DELAY = 60 / MINUTE_REQUEST_LIMIT + 1 # 12 seconds
+seconds_in_a_day = 86400
+DAILY_REQUEST_LIMIT  = 500
+DAILY_REQUEST_LIMIT_DELAY  = (seconds_in_a_day / DAILY_REQUEST_LIMIT).ceil + 1 # 174 seconds
+
+
 require_relative '../lib/sms'
 
 require_relative "../config/stonks"
 require_relative "monkeypatches"
+require_relative "alphavantage"
 require_relative "stonks_api"
 require_relative "cache_lib"
 require_relative "utils"

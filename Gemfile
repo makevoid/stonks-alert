@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
 # backend
-gem "redis"
 gem "twilio-ruby"
 gem "excon"
+gem "redis" # can be dropped - used only for dev env
 # gem "alphavantagerb" # dropped
 
 # UI

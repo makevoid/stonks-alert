@@ -42,15 +42,21 @@ def send_alert(ticker:, price:)
   send_smses message: message
 end
 
+def process_stock_ticker_cached(stock:)
+  cache(ticker_name) do
+    value = process_stock_ticker stock: stock
+    sleep DAILY_REQUEST_LIMIT_DELAY
+    value
+  end
+end
+
 def check_stocks
   stock_tickers = STONKS
   prices = stock_tickers.map do |stock|
     ticker_name = stock.first
-    cache(ticker_name) do
-      value = process_stock_ticker stock: stock
-      sleep 15
-      value
-    end
+    # process_stock_ticker_cached stock: stock # just for DEV
+    process_stock_ticker stock: stock
+    sleep DAILY_REQUEST_LIMIT_DELAY
   end.compact
 
   list_prices prices: prices
@@ -72,15 +78,9 @@ def check_stocks
   end
 end
 
-def time_out
-  one_minute = 60
-  sleep one_minute * 10
-end
-
 def main
   loop do
     check_stocks
-    time_out
   end
 end
 

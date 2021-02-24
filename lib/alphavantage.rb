@@ -41,7 +41,7 @@ module AlphavantageLib
   def mid_price(ticker:)
     low   = ticker.f LABELS[:low]
     high  = ticker.f LABELS[:high]
-    (low.to_f + high.to_f) / 2
+    ((low.to_f + high.to_f) / 2).round 2
   end
 
   def stonk_price(ticker_symbol:)
@@ -57,7 +57,7 @@ class Alphavantage
 
   attr_reader :ticker
 
-  def constructor(ticker:)
+  def initialize(ticker:)
     @ticker = ticker
   end
 
