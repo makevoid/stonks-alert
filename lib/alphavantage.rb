@@ -4,6 +4,21 @@ require_relative 'env'
 
 AALPHAVANTAGE_API_KEY = KEY_STONKS_API
 ALPHAVANTAGE_TICKERS_URL = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=%s&interval=5min&apikey=#{AALPHAVANTAGE_API_KEY}"
+# TODO: https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=demo # TODO: check this api
+
+# crypto
+
+# ALPHAVANTAGE_CRYPTO_URL = https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=%s&to_currency=USD&apikey=demo
+# ALPHAVANTAGE_CRYPTO2CRYPTO_URL = https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=%s&to_currency=BTC&apikey=demo
+
+# TODO: move
+def alphavantage_crypto_url(symbol:)
+  if crypto == "BTC"
+    ALPHAVANTAGE_CRYPTO_URL % "BTC"
+  else
+    ALPHAVANTAGE_CRYPTO2CRYPTO_URL % crypto
+  end
+end
 
 module AlphavantageLib
 
