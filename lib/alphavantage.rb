@@ -104,7 +104,6 @@ class Alphavantage
     new(ticker: ticker).crypto_price
   end
 
-
 end
 
 # Usage:

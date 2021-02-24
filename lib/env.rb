@@ -77,4 +77,6 @@ include Utils
 # rescue ExceptionName
 #
 # end
-R["test"]
+#
+# TODO: quick redis healthcheck
+# R["test"]
