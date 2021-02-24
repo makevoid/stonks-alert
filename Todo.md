@@ -1,3 +1,3 @@
 ### TODO
 
-- add crypto
+no todos atm
