@@ -9,7 +9,7 @@ STONKS = {
   PLTR:   [25, 33],   # on reddit/news previous week
 }
 
-CRYPTO = {
+CRYPTOS = {
   BTC:  [48000, 54000],
   ETH:  [0.024, 0.04],
   DOGE: [0.0000005, 0.0000015],
