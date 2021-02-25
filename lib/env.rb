@@ -46,6 +46,7 @@ seconds_in_a_day = 86400
 DAILY_REQUEST_LIMIT  = 500
 DAILY_REQUEST_LIMIT_DELAY  = (seconds_in_a_day / DAILY_REQUEST_LIMIT).ceil + 1 # 174 seconds
 
+# DAILY_REQUEST_LIMIT_DELAY = 1 # for DEV
 
 # alphavantage
 

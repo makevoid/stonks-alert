@@ -6,7 +6,9 @@ STONKS = {
   AMZN:   [3100, 3500],
   AAPL:   [105, 160],
   # others
-  PLTR:   [25, 33],   # on reddit/news previous week
+  # not supported - TODO: use polygon.io
+  # PLTR:   [25, 33],  # on reddit/news previous week
+  # GME:   [120, 170],   # spiking again
 }
 
 CRYPTOS = {
