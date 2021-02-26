@@ -79,5 +79,4 @@ include Utils
 #
 # end
 #
-# TODO: quick redis healthcheck
-# R["test"]
+R["test"]

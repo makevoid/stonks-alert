@@ -47,7 +47,8 @@ def send_smses(message:)
 end
 
 def sms_sent_recently?(ticker:)
-  ticker
+  # TODO
+  false
 end
 
 def send_alert(ticker:, price:)

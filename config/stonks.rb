@@ -1,14 +1,14 @@
 STONKS = {
   # outliers
-  TSLA:   [650, 750], # demo
+  TSLA:   [630, 690], # demo
   SPY:    [370, 410],
   # tech stocks
-  AMZN:   [3100, 3500],
+  AMZN:   [2800, 3200],
   AAPL:   [105, 160],
   # others
-  # not supported - TODO: use polygon.io
-  # PLTR:   [25, 33],  # on reddit/news previous week
-  # GME:   [120, 170],   # spiking again
+  PLTR:   [23, 30],  # on reddit/news previous week
+  GME:    [100, 170],   # spiking again
+  # # TODO: use polygon.io ?
 }
 
 CRYPTOS = {
