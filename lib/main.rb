@@ -47,8 +47,12 @@ def send_smses(message:)
 end
 
 def sms_sent_recently?(ticker:)
-  # TODO
-  false
+  one_minute = 60 # seconds
+  outcome = true
+  outcome = false if R["smses:#{ticker}"]
+  timeout = one_minute * 60
+  R.setex "smses:#{ticker}", timeout, "1"
+  outcome
 end
 
 def send_alert(ticker:, price:)
