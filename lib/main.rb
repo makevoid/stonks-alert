@@ -17,6 +17,23 @@ def process_stock_ticker(stock:)
   }
 end
 
+def process_crypto_ticker(crypto:)
+  ticker, price_alerts = crypto.first, crypto.last.sort
+  price_alert_low, price_alert_high = price_alerts.first, price_alerts.last
+  price = crypto_price ticker_symbol: ticker
+
+  puts "#{ticker}: #{price}"
+  {
+    ticker: ticker,
+    price:  price,
+    alerts: [price_alert_low, price_alert_high],
+    _alerts: {
+      low:  price_alert_low,
+      high: price_alert_high,
+    },
+  }
+end
+
 def send_sms(message:, recipient:)
   sms = SMS.new.deliver to: recipient, message: message
   p sms
@@ -54,16 +71,17 @@ def check_stonks_only
   stock_tickers.map do |stock|
     ticker_name = stock.first
     # process_stock_ticker_cached stock: stock # just for DEV
-    process_stock_ticker stock: stock
+    price = process_stock_ticker stock: stock
     sleep DAILY_REQUEST_LIMIT_DELAY
+    price
   end.compact
 end
 
 def check_cryptos
   crypto_tickers = CRYPTOS
-  crypto_tickers.map do |stock|
-    ticker_name = stock.first
-    price = process_stock_ticker stock: stock
+  crypto_tickers.map do |crypto|
+    ticker_name = crypto.first
+    price = process_crypto_ticker crypto: crypto
     sleep DAILY_REQUEST_LIMIT_DELAY
     price
   end.compact

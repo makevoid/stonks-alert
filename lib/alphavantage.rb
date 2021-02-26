@@ -5,6 +5,7 @@ require_relative 'env'
 module AlphavantageLibCrypto
 
   def alphavantage_crypto_url(symbol:)
+    symbol = symbol.to_s
     if symbol == "BTC"
       ALPHAVANTAGE_CRYPTO_URL % "BTC"
     else
@@ -26,7 +27,7 @@ module AlphavantageLibCrypto
     price = price.f "Realtime Currency Exchange Rate"
     price = price.f "5. Exchange Rate"
     p price if DEBUG
-    price
+    price.to_f.round 2
   end
 
 end
@@ -96,12 +97,12 @@ class Alphavantage
     new(ticker: ticker).price
   end
 
-  def price_crypto
-    crypto_price ticker_symbol: ticker
+  def check_price_crypto
+    price_crypto symbol: ticker
   end
 
-  def self.crypto_price(ticker:)
-    new(ticker: ticker).crypto_price
+  def self.price_crypto(ticker:)
+    new(ticker: ticker).check_price_crypto
   end
 
 end
