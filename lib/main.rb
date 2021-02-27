@@ -5,7 +5,7 @@ def process_stock_ticker(stock:)
   price_alert_low, price_alert_high = price_alerts.first, price_alerts.last
   price = stonk_price ticker_symbol: ticker
 
-  puts "#{ticker}: #{price}"
+  puts "#{ticker}:\t\t#{price}"
   {
     ticker: ticker,
     price:  price,
@@ -22,7 +22,7 @@ def process_crypto_ticker(crypto:)
   price_alert_low, price_alert_high = price_alerts.first, price_alerts.last
   price = crypto_price ticker_symbol: ticker
 
-  puts "#{ticker}: #{price}"
+  puts "#{ticker}:\t\t#{price}"
   {
     ticker: ticker,
     price:  price,
@@ -94,6 +94,7 @@ end
 
 def check_stonks
   prices = []
+  puts "checking stonks:"
   prices += check_stonks_only
   prices += check_cryptos
 
