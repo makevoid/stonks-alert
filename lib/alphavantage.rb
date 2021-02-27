@@ -27,7 +27,7 @@ module AlphavantageLibCrypto
     price = price.f "Realtime Currency Exchange Rate"
     price = price.f "5. Exchange Rate"
     p price if DEBUG
-    price.to_f.round 2
+    price.to_f.round 7
   end
 
 end
