@@ -1,5 +1,7 @@
 require_relative 'lib/env'
 
+# status: UI App not finished yet
+
 class App < Roda
   plugin :render, engine: :haml
   plugin :public
