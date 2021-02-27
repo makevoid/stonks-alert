@@ -36,7 +36,7 @@ end
 
 def send_sms(message:, recipient:)
   sms = SMS.new.deliver to: recipient, message: message
-  p sms
+  p sms if DEBUG
   sms
 end
 
