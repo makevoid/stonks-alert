@@ -7,7 +7,7 @@ STONKS = {
   AAPL:   [105, 160],
   # others
   PLTR:   [23, 30],  # on reddit/news previous week
-  GME:    [100, 170],   # spiking again
+  GME:    [75, 170],   # spiking again
   # # TODO: use polygon.io ?
 }
 
