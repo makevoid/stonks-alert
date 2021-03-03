@@ -1,5 +1,9 @@
 require_relative 'env'
 
+def get_uniswap_prices
+  Uniswap.prices
+end
+
 def process_stock_ticker(stock:)
   ticker, price_alerts = stock.first, stock.last.sort
   price_alert_low, price_alert_high = price_alerts.first, price_alerts.last
@@ -88,6 +92,17 @@ def check_cryptos
     ticker_name = crypto.first
     price = process_crypto_ticker crypto: crypto
     sleep DAILY_REQUEST_LIMIT_DELAY
+    price
+  end.compact
+end
+
+def check_cryptos_uniswap
+  crypto_tickers = CRYPTOS_UNISWAP
+  uniswap_prices = get_uniswap_prices
+  crypto_tickers.map do |crypto|
+    ticker_name = crypto.first
+    price = process_crypto_uniswap_ticker crypto: crypto, uniswap_prices: uniswap_prices
+    sleep 1
     price
   end.compact
 end

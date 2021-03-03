@@ -28,6 +28,10 @@ module AlphavantageLibCrypto
     price = price.f "5. Exchange Rate"
     p price if DEBUG
     price.to_f.round 7
+  rescue Excon::Error::Timeout => err # NOTE: this is a quick fix against timeout - TODO: produce a full fix to reraise / catch the exception
+    0
+  rescue JSON::ParserError => err
+    0
   end
 
 end
