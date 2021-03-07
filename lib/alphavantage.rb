@@ -32,6 +32,7 @@ module AlphavantageLibCrypto
     0
   rescue JSON::ParserError => err
     0
+  rescue SocketError => err
   end
 
 end

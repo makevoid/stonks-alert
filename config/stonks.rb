@@ -1,6 +1,6 @@
 STONKS = {
   # outliers
-  TSLA:   [670, 790], # demo
+  TSLA:   [580, 690], # demo
   SPY:    [370, 410],
   # tech stocks
   AMZN:   [2800, 3200],
