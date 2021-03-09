@@ -2,6 +2,12 @@
 
 require_relative 'env'
 
+class JSONParseError < RuntimeError
+  def message
+    "JSONParseError - ignoring the ticker for this run"
+  end
+end
+
 module AlphavantageLibCrypto
 
   def alphavantage_crypto_url(symbol:)
@@ -28,11 +34,10 @@ module AlphavantageLibCrypto
     price = price.f "5. Exchange Rate"
     p price if DEBUG
     price.to_f.round 7
-  rescue Excon::Error::Timeout => err # NOTE: this is a quick fix against timeout - TODO: produce a full fix to reraise / catch the exception
+  rescue JSONParseError => err # custom exception
     0
-  rescue JSON::ParserError => err
+  rescue Excon::Error::Timeout, SocketError => err # TODO: extract to custom exception
     0
-  rescue SocketError => err
   end
 
 end
@@ -50,7 +55,12 @@ module AlphavantageLib
   def tickers_raw(symbol:)
     http = Excon.new ALPHAVANTAGE_TICKERS_URL % symbol
     resp  = http.get
-    resp  = JSON.parse resp.body
+    begin
+      resp  = JSON.parse resp.body
+    rescue JSON::ParserError => err
+      puts "ignoring json ticker (json parse error)"
+      raise JSONParseError
+    end
     p resp if DEBUG
     resp
   end
