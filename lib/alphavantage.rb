@@ -30,7 +30,11 @@ module AlphavantageLibCrypto
 
   def price_crypto(symbol:)
     price = price_crypto_raw symbol: symbol
-    price = price.f "Realtime Currency Exchange Rate"
+    begin
+      price = price.f "Realtime Currency Exchange Rate"
+    rescue KeyError => err
+      return 0
+    end
     price = price.f "5. Exchange Rate"
     p price if DEBUG
     price.to_f.round 7
