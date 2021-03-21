@@ -5,7 +5,7 @@ STONKS = {
 }
 
 CRYPTOS = {
-  BTC:  [58000, 68000],
+  BTC:  [55000, 64000],
   # crypto values are in btc (except for BTC)
   ETH:  [0.024, 0.04],
   DOGE: [0.0000005, 0.0000015],

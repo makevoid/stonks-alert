@@ -40,7 +40,7 @@ module AlphavantageLibCrypto
     price.to_f.round 7
   rescue JSONParseError => err # custom exception
     0
-  rescue Excon::Error::Timeout, SocketError => err # TODO: extract to custom exception
+  rescue Excon::Error::Timeout, Excon::Error::Socket, SocketError => err # TODO: extract to custom exception
     0
   end
 
