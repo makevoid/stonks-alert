@@ -8,6 +8,12 @@ class JSONParseError < RuntimeError
   end
 end
 
+class ConnectionError < RuntimeError
+  def message
+    "ConnectionError - ignoring any connection error (look at the logs for the specific error)"
+  end
+end
+
 module AlphavantageLibCrypto
 
   def alphavantage_crypto_url(symbol:)
@@ -64,6 +70,9 @@ module AlphavantageLib
     rescue JSON::ParserError => err
       puts "ignoring json ticker (json parse error)"
       raise JSONParseError
+    rescue Excon::Error::Timeout, Excon::Error::Socket, SocketError => err # TODO: extract to custom exception
+      puts "ignoring connection error - #{err.inspect}"
+      raise ConnectionError
     end
     p resp if DEBUG
     resp
