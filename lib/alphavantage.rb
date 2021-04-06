@@ -44,7 +44,7 @@ module AlphavantageLibCrypto
     price = price.f "5. Exchange Rate"
     p price if DEBUG
     price.to_f.round 7
-  rescue JSONParseError => err # custom exception
+  rescue JSON::ParserError => err
     0
   rescue Excon::Error::Timeout, Excon::Error::Socket, SocketError => err # TODO: extract to custom exception
     0
